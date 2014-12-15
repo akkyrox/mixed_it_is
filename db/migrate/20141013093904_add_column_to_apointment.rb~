@@ -1,0 +1,7 @@
+class AddColumnToApointment < ActiveRecord::Migration
+  def change
+    add_column :apointments, :physician_id, :integer
+    add_column :apointments, :patient_id, :integer
+    add_column :apointments, :apointment_date, :date
+  end
+end

@@ -1,0 +1,14 @@
+<h1> Want to enroll</h1>
+<%= form_for :association, url: associates_path do |f| %>
+<p>
+<%= f.label :physician_id %>
+<%= f.number_field :physician_id %>
+</p> 
+<p>
+<%= f.label :physician_id %>
+<%= f.select :physician_id, options_for_select(%w[a b c d e f]) %> 
+</p>
+<P>
+<%= f.submit "Enroll"%>
+</p>
+<%end%>

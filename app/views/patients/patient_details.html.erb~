@@ -1,0 +1,23 @@
+
+<h1>Patient Detail</h1>
+
+<p>
+<strong>Name:</strong>
+<%= @patient.name %>
+
+</p>
+
+<p>
+<strong>Problem:</strong>
+<%= @patient.problem %>
+</p>
+
+
+
+
+
+
+
+
+
+

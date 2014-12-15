@@ -1,0 +1,19 @@
+<p>
+<strong>Name:</strong>
+<%= @patient.name %>
+
+</p>
+
+<p>
+<strong>Problem:</strong>
+<%= @patient.problem %>
+</p>
+
+<p>
+<strong>Physician_Selected:</strong>
+<%= @patient.select_physician %>
+</p>
+
+
+
+

@@ -1,0 +1,3 @@
+<h1> List of Enrollments </h1>
+
+<%= link_to "Enrollment", new_associates_path %>

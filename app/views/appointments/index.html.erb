@@ -1,0 +1,28 @@
+<h1> Appointments </h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Physician ID</th>
+    <th>Patient ID</th>
+    <th>Appointment Date</th>
+    <th>Created At</th>
+    <th>Updated At</th>
+  </tr>
+
+  <% @appointments.each do |appointment| %>
+    <tr>
+      <td><%= appointment.id %></td>
+      <td><%= appointment.physician_id %></td>
+      <td><%= appointment.patient_id %></td>
+      <td><%= appointment.appointment_date %></td>
+      <td><%= appointment.created_at %></td>
+      <td><%= appointment.updated_at %></td>
+    </tr>
+  <% end %>
+
+
+<%= link_to 'Back', physicians_path %>
+
+</table>
+

@@ -1,0 +1,6 @@
+class UserMailer < ActionMailer::Base
+  def registration_confirmation(patient)
+debugger
+    mail(:to => patient.email_id, :subject => "Registered" )
+  end
+end

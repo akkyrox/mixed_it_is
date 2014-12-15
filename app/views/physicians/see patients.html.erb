@@ -1,0 +1,21 @@
+<h1>Patient List</h1>
+
+<table>
+  <tr>
+     <th>Patient ID</th>
+     <th>Patient Name</th>
+     <th>Details</th>
+  </tr>
+
+  
+  <% @physician.appointments.each do |physician| %>
+
+<tr>
+     <td><%= physician.patient_id %></td>
+     <td><%= physician.patient.name %></td>
+<% debugger %>
+     <td><%= link_to 'Patient Details' , "/patients_patient_details/#{physician.patient_id}" %> </td>
+  </tr>
+ <% end %>
+</table>
+

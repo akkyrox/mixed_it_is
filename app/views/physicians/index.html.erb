@@ -1,0 +1,28 @@
+<h1> Physician List </h1>
+
+
+<%= link_to 'New Physician', new_physician_path %>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Speciality</th>
+    <th>Created At</th>
+    <th>Updated At</th>
+  </tr>
+
+  <% @physicians.each do |physician| %>
+    <tr>
+      <td><%= physician.id %></td>
+      <td><%= physician.name %></td>
+      <td><%= physician.speciality %></td>
+      <td><%= physician.created_at %></td>
+      <td><%= physician.updated_at %></td>
+      <td><%#= link_to 'See_Patients', physicians_see_patients_path %> </td>
+      <td><%= link_to 'See_Patients', "/physicians_see_patients/#{physician.id}" %> </td>
+    </tr>
+  <% end %>
+
+
+</table>
