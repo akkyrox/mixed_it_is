@@ -28,4 +28,7 @@ class PhysiciansController < ApplicationController
     @physician = Physician.find(params[:id])
   end
 
+  def check
+    render :text => "got it"
+  end
 end

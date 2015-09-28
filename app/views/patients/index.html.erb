@@ -1,6 +1,13 @@
 
 <h1> Patient List </h1>
 
+<%= form_tag patients_path, :method => :get do %>
+    <p>
+      <%= text_field_tag :search, params[:search] %>
+      <%= submit_tag "Search", :name => nil %>
+<% end %>
+
+
 <%= link_to 'New Patient', new_patient_path %>
 
 
@@ -22,12 +29,15 @@
     <tr>
 
       <td><%= patient.id %></td>
-      <td><%= patient.name %></td>
+      <td><%= best_in_place patient, :name, :classes => 'highlight_on_success'%></td>
 
-      <td><%= patient.problem %></td>
-      <td><%= Physician.find(patient.select_physician).name %></td>
+
+
+      <td><%#= patient.problem %></td>
+      <td><%#= Physician.find(patient.select_physician).name %></td>
       <td><%= patient.created_at %></td>
       <td><%= patient.updated_at %></td>
+      <td> <%= link_to "edit", edit_patient_path(patient) %></td>
     </tr>
   <% end %>
 
@@ -44,4 +54,7 @@
 
 
     <%#= content_tag(:div, link_to("Add #{ classifier.name }", { :action=> 'new_classifier', :classifier_id => params[:classifier_id], :campaign_id => params[:campaign_id] },"data-update"=>"new_classifier","data-paramtype"=>"get_href",:class=>"ajax_form_call"), :class => 'button')%>
-
+-->
+<script>
+   // $('.highlight_on_success').bind("ajax:success", function(){$(this).closest('tr').effect('highlight'));});
+</script>

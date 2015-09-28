@@ -1,0 +1,1 @@
+SINGLE_QUEST_VIEW_TYPE = ['8am','4pm']

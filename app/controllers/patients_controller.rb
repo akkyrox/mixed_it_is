@@ -1,43 +1,64 @@
 class PatientsController < ApplicationController
-
+  respond_to :html, :json
   def index
     @patients=Patient.all
+#    @search = Patient.search { keywords params[:search]}
+
+  #  @patients = @search.results
   end
   
   def new
     @patient=Patient.new
   end
+  #Patient.find_or_create_by(name: 'aksjkjhkhk') do |check|
 
   def create
      @patient=Patient.new(patient_params)
 #    @patient.name = params[:patient][:name]
 #    @patient.problem =params[:patient][:problem]
-     @patient.select_physician =params[:physician][:physician_id]
+     #@patient.select_physician =params[:physician][:physician_id]
 #    if @patient.save
 
 #    redirect_to @patient
 
-
-respond_to do |format|
     if @patient.save
       @appointment=Appointment.new()
       @appointment.patient_id= @patient.id
-      @appointment.physician_id= params[:physician][:physician_id]
+      #@appointment.physician_id= params[:physician][:physician_id]
       @appointment.appointment_date
       @appointment.save
-      UserMailer.delay.registration_confirmation(@patient)
-      format.html { redirect_to(@patient, :notice => 'User was successfully created.') }
-      format.xml  { render :xml => @patient, :status => :created, :location => @patient }
+#      UserMailer.delay.registration_confirmation(@patient)
+#      format.html { redirect_to(@patient, :notice => 'User was successfully created.') }
+#      format.xml  { render :xml => @patient, :status => :created, :location => @patient }
     else
-      format.html { render :action => "new" }
-      format.xml  { render :xml => @patient.errors, :status => :unprocessable_entity }
+ #     format.html { render :action => "new" }
+  #    format.xml  { render :xml => @patient.errors, :status => :unprocessable_entity }
     end
   end
+
+
 
 
 #    else
 #    render 'new'
 #    end
+
+  def edit
+    @patient = Patient.find(params[:id])
+  end
+
+
+  def update
+
+    @patient = Patient.find(params[:id])
+    # if @patient.save
+    #   @appointment=Appointment.new()
+    #   @appointment.patient_id= @patient.id
+    #   @appointment.physician_id= params[:physician][:physician_id]
+    #   @appointment.appointment_date
+    #   @appointment.save
+    @patient.update_attributes(patient_params)
+    respond_with @patient
   end
 
   def show

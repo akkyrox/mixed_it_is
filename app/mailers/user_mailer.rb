@@ -1,8 +1,8 @@
 class UserMailer < ActionMailer::Base
 
-  default :from => 'any_from_address@example.com'
+  default :from => 'ravishankar@kreatio.com'
 
   def registration_confirmation(patient)
-    mail(:to => patient.email_id, :subject => "Registered")
+    mail(:to => patient.email_id, :subject => "Regarding: Happy birthday Ravi Shankar")
   end
 end

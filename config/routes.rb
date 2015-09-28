@@ -4,11 +4,15 @@ Rails.application.routes.draw do
 
  get "patients_patient_details/:id" => "patients#patient_details"
 
+ get "order" => "orders#index"
+
+ get "/export_xml" => "appointments#export_to_xml"
+
+ get 'check' => "physicians#check", :as => :let_me_check
 
 resources :appointments
 resources :patients
 resources :physicians
-
 
 
 root to: "welcome#index"
