@@ -3,8 +3,60 @@
 <%=link_to "Physicians", physicians_path %>
 <%#=link_to "check fast", check_path %>
 <%= link_to "export_xml", 'javascript:void(0)', :class => 'export_it'%>
+<%= link_to "Export Double Ajax", 'javascript:void(0)', :class => 'double_ajax'%>
+
 
 <script>
+
+  $('.double_ajax').click(function(){
+
+      var a = "testing";
+      $.ajax({
+          type: "POST",
+          dataType: "html",
+          url: "/export_ajax",
+          data: "check=" + a,
+          beforeSend: function (xhr) {
+              xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+          },
+          success: function (data) {
+              console.log(data);
+              next_ajax_func(data)
+          }
+      })
+
+  });
+
+
+  var next_ajax_func = function(data) {
+      console.log(data);
+      $.ajax({
+          type: "POST",
+          dataType: "html",
+          url: "/to_check",
+          beforeSend: function (xhr) {
+              xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+          },
+          success: function (data) {
+              console.log(data);
+              createInterval(funca,data,5000);
+
+          }
+      });
+  };
+
+  function funca(data){
+      console.log("second place");
+  }
+   function createInterval(f,data,interval)
+  {
+      setInterval(function () {
+          f(data);
+          console.log("im here");
+      }, interval);
+  }
+
+
   $('.appoint').click(function(){
     $.ajax({
         type: "GET",
