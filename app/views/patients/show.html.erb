@@ -1,38 +1,19 @@
-<script>
-success: function (data) {
-//send_next_ajax(data);
-//          var interval = 1000*60*1; // where X is your every X minutes
-my_ajax(data);
-//        var check = setInterval(function(data){
-//var a = JSON.parse(data);
-//console.log(a);
-//},5000);
-}
+<p>
+<strong>Name:</strong>
+<%= @patient.name %>
+
+</p>
+
+<p>
+<strong>Problem:</strong>
+<%= @patient.problem %>
+</p>
+
+<p>
+<strong>Physician_Selected:</strong>
+<%= @patient.select_physician %>
+</p>
 
 
 
-setInterval(my_ajax(data){
-//setInterval(my_ajax(data), interval);
-var a = JSON.parse(data);
-console.log(data);
-console.log("222222222");
-//    complete: function my_ajax(data) {
-//        setInterval(my_ajax(data), 5000);
-},5000);
-//    var i = 10;
-//    console.log(this.file_name);
-//    $.ajax({
-//      type: 'POST',
-//      url: '/wpl_admin/wpl_home/checking_write_completion',
-//      data: a,
-//      dataType: 'html',
-//      beforeSend: function (xhr) {
-//        xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
-//      },
-//        success: function (data) {
-//        send_next_ajax(data);
-//        }
-//    });
 
-//  }),5000);
-</script>
