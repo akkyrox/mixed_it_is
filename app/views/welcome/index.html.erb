@@ -8,62 +8,77 @@
 
 <script>
 
-  $('.double_ajax').click(function(){
+    $('.double_ajax').click(function(){
 
-      var a = "testing";
-      $.ajax({
-          type: "POST",
-          dataType: "html",
-          url: "/export_ajax",
-          data: "check=" + a,
-          beforeSend: function (xhr) {
-              xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
-          },
-          success: function (data) {
-              console.log(data);
-              next_ajax_func(data)
-          }
-      })
+        var a = "testing";
+        $.ajax({
+            type: "POST",
+            dataType: "html",
+            url: "/export_ajax",
+            data: "check=" + a,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+            },
+            success: function (data) {
+                console.log(data);
+                next_ajax_func(data)
+            }
+        })
 
-  });
-
-
-  var next_ajax_func = function(data) {
-      console.log(data);
-      $.ajax({
-          type: "POST",
-          dataType: "html",
-          url: "/to_check",
-          beforeSend: function (xhr) {
-              xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
-          },
-          success: function (data) {
-              console.log(data);
-              createInterval(funca,data,5000);
-
-          }
-      });
-  };
-
-  function funca(data){
-      console.log("second place");
-  }
-   function createInterval(f,data,interval)
-  {
-      setInterval(function () {
-          f(data);
-          console.log("im here");
-      }, interval);
-  }
+    });
 
 
-  $('.appoint').click(function(){
-    $.ajax({
-        type: "GET",
-        dataType: "xml",
+    var next_ajax_func = function(data) {
+        console.log(data);
+        $.ajax({
+            type: "POST",
+            dataType: "html",
+            url: "/to_check",
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+            },
+            success: function (data) {
+                console.log(data);
+                createInterval(funca,data,5000);
 
-        url: "/appointments"
+            }
+        });
+    };
 
-    })
-  });
+    function funca(data,intercast) {
+        console.log("second place");
+        console.log(intercast);
+        $.ajax({
+            type: "POST",
+            dataType: "html",
+            url: "/to_clear_it",
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+            },
+            success: function (data) {
+                console.log(data);
+                console.log(intercast);
+                clearInterval(intercast);
+            }
+        });
+    }
+
+    function createInterval(f,data,interval)
+    {
+        var intercast  = setInterval(function () {
+            f(data,intercast);
+            console.log("im here");
+        }, interval);
+    }
+
+
+    $('.appoint').click(function(){
+        $.ajax({
+            type: "GET",
+            dataType: "xml",
+
+            url: "/appointments"
+
+        })
+    });
 </script>

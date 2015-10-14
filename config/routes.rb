@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
  post "/to_check" => "appointments#to_check"
 
+ post "/to_clear_it" => "appointments#to_clear_it"
+
  get 'check' => "physicians#check", :as => :let_me_check
 
 resources :appointments

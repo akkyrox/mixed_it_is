@@ -19,7 +19,13 @@ class AppointmentsController < ApplicationController
     email = "akshay@kreatio.com"
     filename = "check101"
     render :json => {"email_status" => email, "file_name" => filename }.to_json
+  end
 
+  def to_clear_it
+    email = "akshay@kreatio.com"
+    filename = "check101"
+    status = true
+    render :json => {"email_status" => email, "file_name" => filename, "status" => true}.to_json
   end
 
   def new_doc
