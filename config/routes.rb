@@ -8,6 +8,12 @@ Rails.application.routes.draw do
 
  get "/export_xml" => "appointments#export_to_xml"
 
+ post "/export_ajax" => "appointments#export_ajax"
+
+ post "/to_check" => "appointments#to_check"
+
+ post "/to_clear_it" => "appointments#to_clear_it"
+
  get 'check' => "physicians#check", :as => :let_me_check
 
 resources :appointments

@@ -9,9 +9,28 @@ class AppointmentsController < ApplicationController
     end
   end
 
+  def export_ajax
+    email = "akshay@kreatio.com"
+    filename = "check101"
+    render :json => {"email_status" => email, "file_name" => filename }.to_json
+  end
+
+  def to_check
+    email = "akshay@kreatio.com"
+    filename = "check101"
+    render :json => {"email_status" => email, "file_name" => filename }.to_json
+  end
+
+  def to_clear_it
+    email = "akshay@kreatio.com"
+    filename = "check101"
+    status = true
+    render :json => {"email_status" => email, "file_name" => filename, "status" => true}.to_json
+  end
+
   def new_doc
     doc =  Docx::Document.new('you.docx')
-    doc.bookmarks().merge!{"aksh" => "check"}
+    doc.bookmarks().merge!({"aksh" => "check"})
   end
   # @appointments=Appointment.all.paginate(:page => params[:page], :per_page => 4)
   #@appointments=Appointment.last(10).paginate(:page => params[:page], :per_page => 2)

@@ -3,15 +3,82 @@
 <%=link_to "Physicians", physicians_path %>
 <%#=link_to "check fast", check_path %>
 <%= link_to "export_xml", 'javascript:void(0)', :class => 'export_it'%>
+<%= link_to "Export Double Ajax", 'javascript:void(0)', :class => 'double_ajax'%>
+
 
 <script>
-  $('.appoint').click(function(){
-    $.ajax({
-        type: "GET",
-        dataType: "xml",
 
-        url: "/appointments"
+    $('.double_ajax').click(function(){
 
-    })
-  });
+        var a = "testing";
+        $.ajax({
+            type: "POST",
+            dataType: "html",
+            url: "/export_ajax",
+            data: "check=" + a,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+            },
+            success: function (data) {
+                console.log(data);
+                next_ajax_func(data)
+            }
+        })
+
+    });
+
+
+    var next_ajax_func = function(data) {
+        console.log(data);
+        $.ajax({
+            type: "POST",
+            dataType: "html",
+            url: "/to_check",
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+            },
+            success: function (data) {
+                console.log(data);
+                createInterval(funca,data,5000);
+
+            }
+        });
+    };
+
+    function funca(data,intercast) {
+        console.log("second place");
+        console.log(intercast);
+        $.ajax({
+            type: "POST",
+            dataType: "html",
+            url: "/to_clear_it",
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+            },
+            success: function (data) {
+                console.log(data);
+                console.log(intercast);
+                clearInterval(intercast);
+            }
+        });
+    }
+
+    function createInterval(f,data,interval)
+    {
+        var intercast  = setInterval(function () {
+            f(data,intercast);
+            console.log("im here");
+        }, interval);
+    }
+
+
+    $('.appoint').click(function(){
+        $.ajax({
+            type: "GET",
+            dataType: "xml",
+
+            url: "/appointments"
+
+        })
+    });
 </script>

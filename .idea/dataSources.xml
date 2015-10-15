@@ -10,7 +10,7 @@
     <data-source source="LOCAL" name="Rails association: test" uuid="a2ca814a-dd66-434d-b3fb-3260aa26958d">
       <driver-ref>postgresql</driver-ref>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql:association_test</jdbc-url>
+      <jdbc-url>jdbc:postgresql:association_development</jdbc-url>
       <libraries />
     </data-source>
     <data-source source="LOCAL" name="Rails association: production" uuid="b36e2866-d2c0-4f30-9949-c65cdffa3404">
