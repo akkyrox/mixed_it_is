@@ -12,4 +12,8 @@ belongs_to :ward
  #     problem.downcase.gsub(/^(an?|the)/, '')
 
   end
+
+  def self.delete_file
+    `rm #{Rails.root}/public/text.csv`
+  end
 end
